@@ -1,3 +1,9 @@
+document.addEventListener('keypress', function(event) {
+     if (event.key === 'Enter') {
+          spin();
+     }
+});
+
 function spin() {
 
      let resultBox = document.querySelectorAll('b')
@@ -23,27 +29,33 @@ function spin() {
           item.style.color = "#333"
      })
 
-     if (confirm('Mày chơi xổ số đấy à?')) {
-          let x = prompt('Nay đánh con gì?')
-          let y = prompt('Bao nhiêu điểm?')
-          let mess = document.querySelector('#mess')
-          let trung = false
-          let nhay = 0
-          resultBox.forEach((item) => {
-               if (check(item.textContent, x)) {
-                    trung = true;
-                    nhay++;
-                    item.style.color = "red"
-               }
-          })
 
-          if(trung) {
-               mess.textContent = `Ăn con ${x}, ${y * nhay} điểm, được ${currency(y * nhay * 100000)}đ!`
+     let x = document.getElementById('numberInput').value;
+     let y = document.getElementById('pointsInput').value;
+     let mess = document.querySelector('#mess')
+     let trung = false
+     let nhay = 0
+     resultBox.forEach((item) => {
+          if (check(item.textContent, x)) {
+               trung = true;
+               nhay++;
+               item.style.color = "red"
           }
-          else{
-               mess.textContent = `Này thì ${y} điểm con ${x} :v...Ra đê!`
-          }
+     })
+     
+     if(trung) {
+          mess.textContent = `Ăn con ${x}, ${y} điểm, `
+          mess.textContent += nhay > 1? ` ${nhay} nhay, `: `` // xu ly truong hop ve nhieu hon 1 nhay!
+          mess.textContent += `được ${currency(y * nhay * 100000)}đ!`
      }
+     else{
+          mess.textContent = `Này thì ${y} điểm con ${x} :v...Ra đê!`
+     }
+
+     // Clear input values and set focus
+     document.getElementById('numberInput').value = '';
+     document.getElementById('pointsInput').value = '';
+     document.getElementById('numberInput').focus();
 }
 
 function check(to, sonho) {
