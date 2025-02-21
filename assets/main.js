@@ -47,9 +47,10 @@ function spin() {
      
      if(trung) {
           truotthong = 0;
-          mess.textContent = `Ăn con ${x}, ${y} điểm, `
-          mess.textContent += nhay > 1? ` ${nhay} nhay, `: `` // xu ly truong hop ve nhieu hon 1 nhay!
-          mess.textContent += `được ${currency(y * nhay * 100000)}đ!`
+          let texttt = `Ăn con ${x}, ${y} điểm, `
+          texttt += nhay > 1? ` ${nhay} nhay, `: `` // xu ly truong hop ve nhieu hon 1 nhay!
+          texttt += `được ${currency(y * nhay * 100000)}đ!`
+          alert(texttt);
      }
      else{
           truotthong += 1;
@@ -57,7 +58,7 @@ function spin() {
                truongthong_max = truotthong;
                document.getElementById('truongthong_max').textContent = truongthong_max
           }
-          mess.textContent = `Này thì ${y} điểm con ${x} :v...Ra đê!`
+          alert(`Trượt ${y} điểm con ${x}!`)
      }
      document.getElementById('count').textContent = truotthong
 
